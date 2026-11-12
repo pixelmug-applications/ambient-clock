@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "npm --prefix webapp run dev",
     "build": "npm --prefix webapp run build",
-    "bot": "node bot/ambient-clock-bot.js",
+    "bot": "node bot/index.js",
     "preview": "npm --prefix webapp run preview"
+  },
+  "dependencies": {
+    "@jeejio-bubble/bot": "0.1.9"
   }
 }

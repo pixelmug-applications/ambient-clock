@@ -1,0 +1,21 @@
+{
+  "launchId": "launch-f8fefde2-23ff-444e-812a-e8c00adfb326",
+  "device": {
+    "deviceId": "11ZKCBTZVG00070003E5",
+    "slotId": "50908440319635357696"
+  },
+  "network": {
+    "ip": "172.20.10.2",
+    "wifiConnected": true,
+    "updatedAt": "2026-11-12T04:23:48.164Z",
+    "ssid": "JeejioPhone"
+  },
+  "state": "stopped",
+  "fingerprint": "1f2ecb3f44862bbcb49b0bfe9225bbcab005d7d7f5ba5541f2d8df15a73d4ff7",
+  "startedAt": "2026-11-12T04:23:35.123Z",
+  "updatedAt": "2026-11-12T04:27:26.861Z",
+  "error": null,
+  "canRerun": true,
+  "canRunMpyAgain": false,
+  "connectionWarning": null
+}

@@ -1,5 +1,5 @@
 import { computed, reactive } from 'vue';
-import { BleAppClient } from '../../../../jeejio-bubble/sdk/BleAppClient.js';
+import { BleAppClient } from '@jeejio-bubble/bot/sdk/BleAppClient.js';
 import { getWebApp, hasJeeWebBridge, loadPixelMug } from '../template/bubbleClient';
 import { openMpsApp } from '../template/mpsLaunch';
 import { t } from '../i18n';
@@ -72,7 +72,7 @@ function protocol() {
   if (!client) {
     client = new BleAppClient(getWebApp().ble, {
       appId: 'AmbientClock',
-      appVersion: '1.0.0',
+      appVersion: '1.0.1',
       timeoutMillis: 12000,
       connectTimeoutMillis: 20000,
       readyGraceMillis: 8000,

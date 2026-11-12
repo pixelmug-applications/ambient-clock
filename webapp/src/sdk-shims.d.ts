@@ -1,4 +1,4 @@
-declare module '../../../../jeejio-bubble/sdk/WebApp.js' {
+declare module '@jeejio-bubble/bot/sdk/WebApp.js' {
   export class BubbleWebApp {
     constructor(options?: Record<string, unknown>);
     ble: any;
@@ -10,7 +10,7 @@ declare module '../../../../jeejio-bubble/sdk/WebApp.js' {
   }
 }
 
-declare module '../../../../jeejio-bubble/sdk/BleAppClient.js' {
+declare module '@jeejio-bubble/bot/sdk/BleAppClient.js' {
   export class BleAppClient {
     constructor(ble: unknown, options?: Record<string, unknown>);
     on(type: string, handler: (event: any) => void): this;

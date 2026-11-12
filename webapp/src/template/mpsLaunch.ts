@@ -10,8 +10,8 @@ import type { DeviceEventPayload } from './bubbleClient';
 
 export type MpsLaunchPhase = 'requesting' | 'preparing' | 'switching' | 'ready' | 'failed';
 
-const DEV_MPS_ID = import.meta.env.VITE_MPS_ID || '3240349697';
-const DEV_MPS_VERSION = import.meta.env.VITE_MPS_VERSION || '0.0.3';
+const DEV_MPS_ID = import.meta.env.VITE_MPS_ID || '';
+const DEV_MPS_VERSION = import.meta.env.VITE_MPS_VERSION || '1.0.1';
 const READY_EVENTS = new Set(['MPS_IS_RUNNING']);
 const FAILED_EVENTS = new Set(['INSTALL_FAIL', 'RUNNING_FAIL']);
 const lastEvent = new Map<string, string>();

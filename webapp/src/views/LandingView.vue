@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { LOADING_IMAGE } from '../assets';
 import { t } from '../i18n';
@@ -6,13 +7,24 @@ import { useAmbientClock } from '../state/ambientClock';
 
 const router = useRouter();
 const store = useAmbientClock();
+let opening = false;
 
 async function handleOpen() {
-  const opened = await store.openOnDevice();
-  if (!opened) return;
-  await router.push('/home');
-  await store.connectDevice();
+  if (opening) return;
+  opening = true;
+  try {
+    const opened = await store.openOnDevice();
+    if (!opened) return;
+    await router.push('/home');
+    await store.connectDevice();
+  } finally {
+    opening = false;
+  }
 }
+
+onMounted(() => {
+  void handleOpen();
+});
 </script>
 
 <template>

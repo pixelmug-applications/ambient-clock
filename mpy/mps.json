@@ -1,6 +1,6 @@
 {
   "name": "ambient-clock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Three clock styles with synchronized ticking sounds and ambient background noise.",
   "author": "jeejio",
   "category": "Tool",

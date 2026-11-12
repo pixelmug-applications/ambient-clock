@@ -20,7 +20,7 @@ from url_player import UrlOggPlayer
 
 
 APP_NAME = "AmbientClock"
-APP_VERSION = "1.0.0"
+APP_VERSION = "1.0.1"
 STATE_PATH = "/ambient_clock.json"
 TEMP_PATH = "/ambient_clock.tmp"
 FPS = 20
@@ -69,6 +69,15 @@ def ticks_diff(a, b):
 
 def ticks_add(value, delta):
     return time.ticks_add(value, delta)
+
+
+def wall_time_ms():
+    # Wall-clock time must continue advancing while the VM logical clock is
+    # paused with the display off.
+    try:
+        return time.time_ns() // 1_000_000
+    except AttributeError:
+        return safe_int(time.time(), 0) * 1000
 
 
 def safe_int(value, fallback=0):
@@ -221,8 +230,10 @@ class AmbientClockApp:
         }
         self.loaded_style = None
 
-        self.base_utc = safe_int(time.time(), 0)
-        self.base_ticks_ms = ticks_ms()
+        # Difference between the time supplied by the client and the system
+        # wall clock. Unlike ticks_ms(), the wall clock advances while MPS is
+        # paused, so the displayed time catches up immediately after resume.
+        self.wall_time_offset_ms = 0
         self.display_hour = -1
         self.display_minute = -1
         self.prev_hour = 0
@@ -329,8 +340,8 @@ class AmbientClockApp:
 
         incoming = safe_int(self.config.get("setAt"), 0)
         if incoming > 0:
-            self.base_utc = device_epoch(incoming)
-            self.base_ticks_ms = ticks_ms()
+            configured_ms = device_epoch(incoming) * 1000
+            self.wall_time_offset_ms = configured_ms - wall_time_ms()
 
         self.loaded_style = None
         self.load_style_assets(force=True)
@@ -397,12 +408,10 @@ class AmbientClockApp:
         self.loaded_style = style_id
 
     def current_utc(self):
-        elapsed = ticks_diff(ticks_ms(), self.base_ticks_ms) // 1000
-        return self.base_utc + elapsed
+        return self.current_utc_ms() // 1000
 
     def current_utc_ms(self):
-        elapsed = ticks_diff(ticks_ms(), self.base_ticks_ms)
-        return self.base_utc * 1000 + elapsed
+        return wall_time_ms() + self.wall_time_offset_ms
 
     def local_time(self):
         now = self.current_utc() + self.config["timezoneOffsetMinutes"] * 60

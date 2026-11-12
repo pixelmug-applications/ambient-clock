@@ -14,8 +14,6 @@ coverage/
 .env
 .env.*
 !.env.example
-bot/config.dev.js
-bot/config.local.js
 *.pem
 *.key
 *.p12

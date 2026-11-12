@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "runId": "run-2026-11-12T04-18-19-975Z-539ce0",
+  "startedAt": "2026-11-12T04:18:44.866Z",
+  "project": "D:\\git\\pixelmug-mpy\\pixelmug-apps\\ambient-clock",
+  "bot": "bot/index.js",
+  "webRoot": "D:\\git\\pixelmug-mpy\\pixelmug-apps\\ambient-clock\\debug\\run-2026-11-12T04-18-19-975Z-539ce0\\webapp",
+  "buildId": null,
+  "mpsId": "local-debug",
+  "mpsVersion": "1.0.1"
+}
